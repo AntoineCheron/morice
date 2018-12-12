@@ -1,32 +1,65 @@
+body { font-family: Avenir; }
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+  margin-left: auto;
+  margin-right: auto;
 }
+
+h1 { margin-bottom: 16px; }
+h2 { margin-bottom: 12px; }
+h3, h4, h5, h6 { margin-bottom: 8px; }
+
+.center {
+  text-align: center;
+}
+
+.text-right { text-align: right; }
+
+.l-high-padding-top {
+  padding-top: 48px;
+}
+
+.is-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-bold { font-weight: bold; }
+.text-primary { color: #1890ff; }
+
+.is-clickable { cursor: pointer; }
+
+.opacity-lighter { opacity: 0.6; }
+
+.is-clickable>.opacity-lighter:hover { opacity: 0.73; }
+
+.ant-row { padding-top: 24px; }
+.ant-layout { background-color: white; }
+
+@media (min-width: 1281px) {
+  .container { width: 1080px; }  
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) { 
+  .container { width: 960px; }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container { width: 90%; }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .container { width: 90%; }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {}
+
+@media (min-width: 320px) and (max-width: 480px) {}

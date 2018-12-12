@@ -4,11 +4,17 @@ export type ComparedTechnology = {
   checkedCriteria: string[]
 }
 
-export enum TechnologyTypes {
+export enum TechnologyTypesEnum {
   INTERFACE_DESCRIPTION_LANGUAGE = 'InterfaceDescriptionLanguages',
   DATA_INTERCHANGE_FORMAT = 'DataInterchangeFormats',
   DATA_INTERCHANGE_FORMAT_WITH_RDF_IDL = 'ExtensibleDataInterchangeFormatsWithRdfIdl',
   IMPLEMENTATION_FRAMEWORKS = 'ImplementationFrameworks'
 }
+
+export type TechnologyType = {
+  label: string,
+  img: string,
+  types: TechnologyTypesEnum[]
+};
 
 export type Technologies = { [type: string]: ComparedTechnology[] }

@@ -1,11 +1,27 @@
-import { ComparedTechnology, TechnologyTypes, Technologies } from '../model/technology'
+import { ComparedTechnology, TechnologyTypesEnum, Technologies, TechnologyType } from '../model/technology'
 
-export function getTechnologies(type: TechnologyTypes): ComparedTechnology[] {
+export function getTechnologies(type: TechnologyTypesEnum): ComparedTechnology[] {
   return technologies[type]
 }
 
+export const classifiedKindOfTechnologies: TechnologyType[] = [
+  {
+    label: 'Interface Description Languages',
+    types: [TechnologyTypesEnum.INTERFACE_DESCRIPTION_LANGUAGE],
+    img: '/technologies-icons/idl.svg'
+  }, {
+    label: 'Data Interchange Formats',
+    types: [TechnologyTypesEnum.DATA_INTERCHANGE_FORMAT, TechnologyTypesEnum.DATA_INTERCHANGE_FORMAT_WITH_RDF_IDL],
+    img: '/technologies-icons/dif.svg'
+  }, {
+    label: 'Frameworks',
+    types: [TechnologyTypesEnum.IMPLEMENTATION_FRAMEWORKS],
+    img: '/technologies-icons/framework.svg'
+  }
+]
+
 const technologies: Technologies = {
-  [TechnologyTypes.INTERFACE_DESCRIPTION_LANGUAGE]: [
+  [TechnologyTypesEnum.INTERFACE_DESCRIPTION_LANGUAGE]: [
     { name: 'RAPIDO - CRUD Option', uri: 'http://example.com', checkedCriteria: [ 'MR', 'MRO', 'EAR', 'LT', 'STA'] },
     { name: 'RAPIDO - Hypermedia option', uri: 'http://example.com', checkedCriteria: [ 'MR', 'MRO', 'EAR', 'LT', 'HL', 'HYP', 'CL', 'FSM', 'STA' ] },
     { name: 'Modeling RESTful Applications', uri: 'http://example.com', checkedCriteria: [ 'MT', 'MR', 'OTO', 'MRA', 'MRO', 'DR', 'OSD', 'LT', 'HL', 'HYP', 'COA', 'CL', 'FSM', 'RS', 'STA'] },
@@ -23,7 +39,7 @@ const technologies: Technologies = {
     { name: 'RAML', uri: 'http://example.com', checkedCriteria: [ 'MT', 'MR', 'OTO', 'MRA', 'MRO', 'DR', 'OSD', 'LT', 'MC', 'TI', 'AUT', 'SLA', 'ERR', 'STA', 'INC' ] },
     { name: 'I/O Docs', uri: 'http://example.com', checkedCriteria: [ 'MT', 'MR', 'OTO', 'MRA', 'MRO', 'LT', 'TAR', 'STA' ] }
   ],
-  [TechnologyTypes.DATA_INTERCHANGE_FORMAT]: [
+  [TechnologyTypesEnum.DATA_INTERCHANGE_FORMAT]: [
     { name: 'JSON', uri: 'http://example.com', checkedCriteria: [ 'JSON', 'NOM', 'HF', 'ECD' ] },
     { name: 'HAL', uri: 'http://example.com', checkedCriteria: [ 'LT', 'CR', 'HL', 'CL', 'SCL', 'JSON', 'NOM', 'HF', 'CUR', 'ECD', 'PX' ] },
     { name: 'Collection+JSON', uri: 'http://example.com', checkedCriteria: [ 'LT', 'DR', 'HL', 'ERR', 'CL', 'SCL', 'JSON', 'HF', 'ECD' ] },
@@ -37,11 +53,11 @@ const technologies: Technologies = {
     { name: 'Odata JSON Format', uri: 'http://example.com', checkedCriteria: [ 'LT', 'CR', 'PS', 'HL', 'ERR', 'CL', 'JSON', 'HF', 'ECD', 'SML', 'MF' ] },
     { name: 'JSON-LD', uri: 'http://example.com', checkedCriteria: [ 'RDF', 'CL', 'SCL', 'JSON', 'NOM', 'CUR', 'ECD', 'PX' ] }
   ],
-  [TechnologyTypes.DATA_INTERCHANGE_FORMAT_WITH_RDF_IDL]: [
+  [TechnologyTypesEnum.DATA_INTERCHANGE_FORMAT_WITH_RDF_IDL]: [
     { name: 'JSON-LD + Hydra', uri: 'http://example.com', checkedCriteria: [ 'LT', 'CM', 'DR', 'OSD', 'PS', 'HL', 'HYP', 'ERR', 'RDF', 'CL', 'SCL', 'JSON', 'NOM', 'CUR', 'ECD', 'PX' ] },
     { name: 'JSON-LD + Hydra + HTTP RDF + SHACL', uri: 'http://example.com', checkedCriteria: [ 'LT', 'CR', 'CU', 'CM', 'DR', 'OSD', 'PS', 'HL', 'HYP', 'MC', 'ERR', 'RDF', 'CL', 'SCL', 'JSON', 'NOM', 'CUR', 'ECD', 'PX', 'MF' ] }
   ],
-  [TechnologyTypes.IMPLEMENTATION_FRAMEWORKS]: [
+  [TechnologyTypesEnum.IMPLEMENTATION_FRAMEWORKS]: [
     { name: 'Restfulie (ruby)', uri: 'http://example.com', checkedCriteria: [ 'SC', 'OTO', 'CN', 'EXT', 'EAR', 'LT', 'HL', 'LNM', 'CL', 'FSM', 'LGEN' ] },
     { name: 'Restfulie (java)', uri: 'http://example.com', checkedCriteria: [ 'SC', 'OTO', 'MRO', 'CN', 'LT', 'HL', 'LNM', 'CL', 'FSM', 'LGEN' ] },
     { name: 'Restfulie (.NET)', uri: 'http://example.com', checkedCriteria: [ 'SC', 'OTO', 'MRO', 'CN', 'EXT', 'LT', 'HL', 'LNM', 'CL', 'FSM', 'LGEN' ] },

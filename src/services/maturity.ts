@@ -23,7 +23,7 @@ const rpc: MaturityLevel = {
 const resources: MaturityLevel = {
   name: 'Resources',
   criteria: [
-    { 'MT': 'Models/consider available media types' },
+    { 'MT': 'Models/considers available media types' },
     { 'MR': 'Models resources' },
     { 'MRA': 'Models resources\'s attributes' },
     { 'SC': 'Separate Domain-model from URI-model' },

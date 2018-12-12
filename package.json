@@ -1,12 +1,18 @@
 {
-  "name": "morice-2",
-  "version": "0.1.0",
+  "name": "morice",
+  "author": "Antoine Cheron",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntoineCheron/morice.git"
+  },
   "private": true,
   "dependencies": {
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.12",
     "@types/react": "^16.7.13",
     "@types/react-dom": "^16.0.11",
+    "antd": "^3.11.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
