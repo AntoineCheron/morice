@@ -17,6 +17,11 @@ h1 { margin-bottom: 16px; }
 h2 { margin-bottom: 12px; }
 h3, h4, h5, h6 { margin-bottom: 8px; }
 
+.brand-title {
+  color: white;
+  font-family: 'Playfair Display', 'Merriweather', 'Avenir';
+}
+
 .center {
   text-align: center;
 }

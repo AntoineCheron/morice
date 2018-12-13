@@ -4,8 +4,8 @@ import { Layout } from 'antd';
 const { Header } = Layout;
 
 const AppHeader: SFC = () => (
-  <Header>
-    <h4>This is the header</h4>
+  <Header className='center'>
+    <h2 className='brand-title'>Morice</h2>
   </Header>
 )
 
