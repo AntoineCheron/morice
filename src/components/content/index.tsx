@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, RouteComponentProps } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { TechnologyTypesEnum } from '../../model/technology';
@@ -9,16 +10,16 @@ import StepThree from'./step-three'
 
 const { Content } = Layout;
 
+type Props = RouteComponentProps<{step: string}>
 type State = {
-  step: number,
   selectedKinds?: TechnologyTypesEnum[]
 }
 
-class AppContent extends React.Component<{}, State> {
+class AppContent extends React.Component<Props, State> {
 
-  public constructor(props: {}) {
+  public constructor(props: Props) {
     super(props)
-    this.state = { step: 1 };
+    this.state = {};
   }
 
   public render() {
@@ -30,8 +31,8 @@ class AppContent extends React.Component<{}, State> {
   }
 
   private renderStep(): JSX.Element {
-    console.log(this)
-    switch (this.state.step) {
+    const stepNumber = Number.parseInt(this.props.match.params.step) || this.tryToGuessStep()
+    switch (stepNumber) {
       case 1:
         return <StepOne onSave={this.onSaveStepOne.bind(this)} />
       case 2:
@@ -39,12 +40,20 @@ class AppContent extends React.Component<{}, State> {
       case 3:
         return <StepThree />
       default:
-        return <h3>Oops, an unknown error happened. Please refresh.</h3>
+        return <h3>Hey! Unfortunately, this step doesn't exist. Would you mind going back to step 1, 2 or 3?</h3>
     }
   }
 
+  private tryToGuessStep(): number {
+    if (this.state.selectedKinds)
+      return 2;
+    else
+      return 1;
+  }
+
   private onSaveStepOne(selectedKinds: TechnologyTypesEnum[]) {
-    this.setState((state) => { return { ...state, step: 2, selectedKinds }})
+    this.setState((state) => { return { ...state, selectedKinds }})
+    this.props.history.push('/step/2')
   }
   
 }
