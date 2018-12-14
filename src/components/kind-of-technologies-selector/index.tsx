@@ -17,12 +17,6 @@ class KindOfTechnologiesSelector extends React.Component<Props, State> {
   public render(): JSX.Element {
     return (
       <>
-        <Row>
-          <Col span={24}>
-            <h1>1. Kind of technologies</h1>
-            <h4>Please select the kind of technologies you are looking for.</h4>
-          </Col>
-        </Row>
         <Row gutter={24}>
           {
             this.props.kinds.map(({ label, img, types }, i) => (
@@ -39,8 +33,9 @@ class KindOfTechnologiesSelector extends React.Component<Props, State> {
             ))
           }
         </Row>
+
         <Row>
-          <Col span={8} offset={16} className='text-right'>
+          <Col span={24} className='text-right'>
             <Button type="primary" onClick={this.onSave.bind(this)} >
               Next <Icon type="right" />
             </Button>

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route, RouteComponentProps } from 'react-router-dom';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { TechnologyTypesEnum } from '../../model/technology';
+import { CriteriaWeights } from './step-two';
 
 import StepOne from'./step-one'
 import StepTwo from'./step-two'
@@ -12,7 +13,14 @@ const { Content } = Layout;
 
 type Props = RouteComponentProps<{step: string}>
 type State = {
-  selectedKinds?: TechnologyTypesEnum[]
+  stepOne?: {
+    selectedKinds: TechnologyTypesEnum[]
+  },
+  stepTwo?: {
+    criteriaWeights: CriteriaWeights,
+    requiredCriteria: string[]
+  },
+  results?: {}
 }
 
 class AppContent extends React.Component<Props, State> {
@@ -36,7 +44,7 @@ class AppContent extends React.Component<Props, State> {
       case 1:
         return <StepOne onSave={this.onSaveStepOne.bind(this)} />
       case 2:
-        return <StepTwo selectedKinds={[]} />
+        return this.state.stepOne ? <StepTwo selectedKinds={this.state.stepOne.selectedKinds} onSave={this.onSaveStepTwo.bind(this)} /> : <Redirect to='/step/1' />
       case 3:
         return <StepThree />
       default:
@@ -45,15 +53,25 @@ class AppContent extends React.Component<Props, State> {
   }
 
   private tryToGuessStep(): number {
-    if (this.state.selectedKinds)
+    if (this.state.stepTwo)
+      return 3;
+    else if (this.state.stepOne)
       return 2;
     else
       return 1;
   }
 
   private onSaveStepOne(selectedKinds: TechnologyTypesEnum[]) {
-    this.setState((state) => { return { ...state, selectedKinds }})
+    this.setState((state) => { return { ...state, stepOne: {selectedKinds} }})
     this.props.history.push('/step/2')
+  }
+
+  private onSaveStepTwo(criteriaWeights: CriteriaWeights, requiredCriteria: string[]) {
+    this.setState((state) => { return {
+      ...state,
+      stepTwo: {criteriaWeights, requiredCriteria}
+    }})
+    this.props.history.push('/step/3')
   }
   
 }

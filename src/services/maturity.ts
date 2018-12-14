@@ -8,7 +8,6 @@ export const getAllCriteria: () => Criteria[] =
     .map(level => level.criteria)
     .reduce((a, b) => a.concat(b))
 
-
 const none: MaturityLevel = { name: 'None', criteria: []}
 
 // WS3 - DESIGN Maturity Category
@@ -124,7 +123,7 @@ const linkedData: MaturityLevel = {
 }
 
 export const semantic: MaturityCategory = {
-  name: 'Profile',
+  name: 'Semantic',
   levels: {
     [SEMANTIC.NONE]: none,
     [SEMANTIC.DESCRIPTION]: description,
@@ -156,3 +155,12 @@ export const otherCriteria: MaturityLevel = {
     { 'LGEN': 'Links to other resources hold by the system are generated at runtime, not written as code' }
   ]
 }
+
+const others: MaturityCategory = {
+  name: 'Others',
+  levels: {
+    'others': otherCriteria
+  }
+};
+
+export const maturityCategories = [ domain, profile, semantic, others ]
