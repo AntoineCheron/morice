@@ -17,4 +17,9 @@ export type TechnologyType = {
   types: TechnologyTypesEnum[]
 };
 
-export type Technologies = { [type: string]: ComparedTechnology[] }
+interface TechnologiesT<A> {
+  [type: string]: A[]
+}
+
+export type Technologies = TechnologiesT<ComparedTechnology>
+export type TechnologiesScored = TechnologiesT<ComparedTechnology & { score: number }>

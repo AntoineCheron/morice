@@ -1,4 +1,6 @@
 import { Criteria, MaturityCategory, MaturityLevel } from '../model/maturity'
+import { TechnologyTypesEnum } from '../model/technology'
+import { getTechnologies } from './technology';
 
 export const getAllCriteria: () => Criteria =
   () => [ domain, profile, semantic ]
@@ -7,6 +9,31 @@ export const getAllCriteria: () => Criteria =
     .concat(otherCriteria)
     .map(level => level.criteria)
     .reduce(Object.assign)
+
+export const filterCriteria: (selectedKinds: TechnologyTypesEnum[]) => MaturityCategory[] =
+  (selectedKinds: TechnologyTypesEnum[]) => {
+    const criteria = getTechnologies(selectedKinds)
+      .map(technology => technology.checkedCriteria)
+      .reduce((acc, el) => acc.concat(el), [])
+
+    return maturityCategories.map(category => {
+      const newLevels = Object.entries(category.levels)
+        .reduce<{ [n:string]: MaturityLevel }>((acc, [levelName, level]) => {
+          acc[levelName] = {
+            ...level,
+            criteria: Object.entries(level.criteria)
+              .filter(([name, unused]) => criteria.includes(name))
+              .reduce<{[k: string]: string}>((acc, [name, description]) => { acc[name] = description; return acc; }, {})
+          };
+          return acc;
+        }, {});
+
+      return {
+        ...category,
+        levels: newLevels
+      }
+    })
+  }
 
 const none: MaturityLevel = { name: 'None', criteria: {}}
 

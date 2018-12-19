@@ -2,8 +2,8 @@ import React from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { Layout } from 'antd';
 
+import { CriteriaWeights } from '../../model/maturity';
 import { TechnologyTypesEnum } from '../../model/technology';
-import { CriteriaWeights } from './step-two';
 
 import StepOne from'./step-one'
 import StepTwo from'./step-two'
@@ -19,8 +19,7 @@ type State = {
   stepTwo?: {
     criteriaWeights: CriteriaWeights,
     requiredCriteria: string[]
-  },
-  results?: {}
+  }
 }
 
 class AppContent extends React.Component<Props, State> {
@@ -40,13 +39,18 @@ class AppContent extends React.Component<Props, State> {
 
   private renderStep(): JSX.Element {
     const stepNumber = Number.parseInt(this.props.match.params.step) || this.tryToGuessStep()
+
     switch (stepNumber) {
       case 1:
         return <StepOne onSave={this.onSaveStepOne.bind(this)} />
       case 2:
-        return this.state.stepOne ? <StepTwo selectedKinds={this.state.stepOne.selectedKinds} onSave={this.onSaveStepTwo.bind(this)} /> : <Redirect to='/step/1' />
+        return this.state.stepOne
+          ? <StepTwo selectedKinds={this.state.stepOne.selectedKinds} onSave={this.onSaveStepTwo.bind(this)} />
+          : <Redirect to='/step/1' />
       case 3:
-        return this.state.stepTwo ? <StepThree /> : <Redirect to='/step/2' />
+        return this.state.stepTwo && this.state.stepOne
+          ? <StepThree selectedKinds={this.state.stepOne.selectedKinds} criteriaWeights={this.state.stepTwo.criteriaWeights} requiredCriteria={this.state.stepTwo.requiredCriteria} />
+          : <Redirect to='/step/2' />
       default:
         return <h3>Hey! Unfortunately, this step doesn't exist. Would you mind going back to step 1, 2 or 3?</h3>
     }

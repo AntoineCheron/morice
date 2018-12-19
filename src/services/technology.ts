@@ -1,4 +1,5 @@
-import { ComparedTechnology, TechnologyTypesEnum, Technologies, TechnologyType } from '../model/technology'
+import { CriteriaWeights } from '../model/maturity'
+import { ComparedTechnology, TechnologyTypesEnum, Technologies, TechnologiesScored, TechnologyType } from '../model/technology'
 
 export function getTechnologies(types: TechnologyTypesEnum[]): ComparedTechnology[] {
   const typesToStr = types.map(type => type.toString())
@@ -25,6 +26,39 @@ export const classifiedKindOfTechnologies: TechnologyType[] = [
     img: '/technologies-icons/framework.svg'
   }
 ]
+
+export function filterTechnologies(selectedKinds: TechnologyTypesEnum[], criteriaWeights: CriteriaWeights, requiredCriteria: string[]): TechnologiesScored {
+  const selectedKindsStr = selectedKinds.map(k => k.toString())
+  const technologiesOfSelectedKinds = Object.keys(technologies)
+    .filter(key => selectedKindsStr.includes(key))
+    .reduce<Technologies>((acc, key) => { acc[key] = technologies[key]; return acc; }, {})
+
+  return Object.keys(technologiesOfSelectedKinds)
+    .reduce<TechnologiesScored>((acc, key) => {
+      const technologies = technologiesOfSelectedKinds[key]
+      const value = technologies
+        .filter(technology => hasRequiredCriteria(technology, requiredCriteria))
+        .map(technology => {
+          return {
+            ...technology,
+            score: computeScore(technology, criteriaWeights)
+          };
+        });
+
+      acc[key] = value;
+      return acc;
+    }, {})
+}
+
+function computeScore(technology: ComparedTechnology, criteriaWeights: CriteriaWeights): number {
+  return technology.checkedCriteria
+    .map(criteria => criteriaWeights[criteria] || 0)
+    .reduce((acc, val) => acc + val, 0)
+}
+
+function hasRequiredCriteria(technology: ComparedTechnology, requiredCriteria: string[]): boolean {
+  return requiredCriteria.every(c => technology.checkedCriteria.includes(c))
+}
 
 const technologies: Technologies = {
   [TechnologyTypesEnum.INTERFACE_DESCRIPTION_LANGUAGE]: [

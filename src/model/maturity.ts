@@ -9,3 +9,5 @@ export type MaturityLevel = {
 }
 
 export type Criteria = { [name: string]: string }
+
+export type CriteriaWeights = { [criteriaName: string]: number }
