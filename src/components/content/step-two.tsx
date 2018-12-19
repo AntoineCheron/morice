@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button, Col, Icon, Row } from 'antd';
 
+import { MaturityCategory, MaturityLevel } from '../../model/maturity';
 import { TechnologyTypesEnum } from '../../model/technology';
 import { maturityCategories } from '../../services/maturity';
+import { getTechnologies } from '../../services/technology';
 
 import CriteriaForm from '../criteria-form'
 
@@ -33,7 +35,7 @@ class StepTwo extends React.Component<Props, State> {
         <Row>
           <Col span={24}>
             <CriteriaForm
-              categories={maturityCategories}
+              categories={this.filterCriteriaToNote()}
               getCriteriaValue={this.getCriteriaValue.bind(this)}
               onCriteriaUpdate={this.updateCriteria.bind(this)}
               getRequiredValue={this.getRequiredValue.bind(this)}
@@ -90,6 +92,30 @@ class StepTwo extends React.Component<Props, State> {
 
   private getRequiredValue(criteriaName: string): boolean {
     return this.state.requiredCriteria.indexOf(criteriaName) !== -1
+  }
+
+  private filterCriteriaToNote(): MaturityCategory[] {
+    const criteria = getTechnologies(this.props.selectedKinds)
+      .map(technology => technology.checkedCriteria)
+      .reduce((acc, el) => acc.concat(el), [])
+
+    return maturityCategories.map(category => {
+      const newLevels = Object.entries(category.levels)
+        .reduce<{ [n:string]: MaturityLevel }>((acc, [levelName, level]) => {
+          acc[levelName] = {
+            ...level,
+            criteria: Object.entries(level.criteria)
+              .filter(([name, unused]) => criteria.includes(name))
+              .reduce<{[k: string]: string}>((acc, [name, description]) => { acc[name] = description; return acc; }, {})
+          };
+          return acc;
+        }, {});
+
+      return {
+        ...category,
+        levels: newLevels
+      }
+    })
   }
   
 }

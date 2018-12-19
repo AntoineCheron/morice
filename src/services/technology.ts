@@ -1,7 +1,13 @@
 import { ComparedTechnology, TechnologyTypesEnum, Technologies, TechnologyType } from '../model/technology'
 
-export function getTechnologies(type: TechnologyTypesEnum): ComparedTechnology[] {
-  return technologies[type]
+export function getTechnologies(types: TechnologyTypesEnum[]): ComparedTechnology[] {
+  const typesToStr = types.map(type => type.toString())
+
+  return Object.keys(technologies)
+    .filter(key => typesToStr.includes(key))
+    .reduce<ComparedTechnology[]>((results, key) =>
+      results.concat(technologies[key]), []
+    );
 }
 
 export const classifiedKindOfTechnologies: TechnologyType[] = [

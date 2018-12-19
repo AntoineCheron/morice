@@ -12,7 +12,7 @@ const Level: React.SFC<Props> = ({level, getCriteriaValue, onCriteriaUpdate, get
   <div>
     <h4><b>{level.name}</b></h4>
     <Input.Group className='input-group'>
-      { level.criteria.map(criteria => Object.entries(criteria).map((criteria, index) =>
+      { Object.entries(level.criteria).map((criteria, index) =>
           <Criteria key={index.toString()}
             criteria={criteria}
             getCriteriaValue={getCriteriaValue}
@@ -20,7 +20,7 @@ const Level: React.SFC<Props> = ({level, getCriteriaValue, onCriteriaUpdate, get
             getRequiredValue={getRequiredValue}
             onRequiredUpdate={onRequiredUpdate}
           />
-        ))
+        )
       }
     </Input.Group>
   </div>

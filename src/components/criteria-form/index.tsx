@@ -28,7 +28,7 @@ class CriteriaForm extends React.Component<CriteriaFormProps> {
           { this.props.categories.map((category, index) => (
               <Panel header={category.name} key={index.toString()}>
                 { Object.values(category.levels).map((level, index) => 
-                    level.criteria.length === 0
+                    Object.keys(level.criteria).length === 0
                       ? <div key={index.toString()}></div>
                       : <Level key={index.toString()}
                           level={level}

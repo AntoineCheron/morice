@@ -46,7 +46,7 @@ class AppContent extends React.Component<Props, State> {
       case 2:
         return this.state.stepOne ? <StepTwo selectedKinds={this.state.stepOne.selectedKinds} onSave={this.onSaveStepTwo.bind(this)} /> : <Redirect to='/step/1' />
       case 3:
-        return <StepThree />
+        return this.state.stepTwo ? <StepThree /> : <Redirect to='/step/2' />
       default:
         return <h3>Hey! Unfortunately, this step doesn't exist. Would you mind going back to step 1, 2 or 3?</h3>
     }

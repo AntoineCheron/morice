@@ -5,7 +5,7 @@ export type MaturityCategory = {
 
 export type MaturityLevel = {
   name: string,
-  criteria: Criteria[]
+  criteria: Criteria
 }
 
 export type Criteria = { [name: string]: string }
