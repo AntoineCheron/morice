@@ -25,12 +25,14 @@ class CriteriaForm extends React.Component<CriteriaFormProps> {
     return (
       <Form layout='vertical'>
         <Collapse bordered={false} defaultActiveKey={['0']}>
-          { this.props.categories.map((category, index) => (
+          { this.props.categories
+            .filter(c => (numberOfCriteriaInCategory(c)) !== 0)
+            .map((category, index) => (
               <Panel header={category.name} key={index.toString()}>
                 { Object.values(category.levels).map((level, index) => 
                     Object.keys(level.criteria).length === 0
-                      ? <div key={index.toString()}></div>
-                      : <Level key={index.toString()}
+                      ? <div key={level.name + '-' + index.toString()}></div>
+                      : <Level key={level.name + '-' + index.toString()}
                           level={level}
                           getCriteriaValue={this.props.getCriteriaValue}
                           onCriteriaUpdate={this.props.onCriteriaUpdate}
@@ -47,6 +49,13 @@ class CriteriaForm extends React.Component<CriteriaFormProps> {
     );
   }
    
+}
+
+function numberOfCriteriaInCategory(category: MaturityCategory): number {
+  return Object.values(category.levels)
+    .map(level => Object.keys(level.criteria))
+    .reduce((acc, el) => acc.concat(el), [])
+    .length
 }
 
 export default Form.create()(CriteriaForm);

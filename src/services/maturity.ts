@@ -2,38 +2,34 @@ import { Criteria, MaturityCategory, MaturityLevel } from '../model/maturity'
 import { TechnologyTypesEnum } from '../model/technology'
 import { getTechnologies } from './technology';
 
-export const getAllCriteria: () => Criteria =
-  () => [ domain, profile, semantic ]
-    .map(category => Object.values(category.levels))
-    .reduce((a, b) => a.concat(b)) // flatten operation
-    .concat(otherCriteria)
-    .map(level => level.criteria)
-    .reduce(Object.assign)
+export function filterCriteria(selectedKinds: TechnologyTypesEnum[]): MaturityCategory[] {
+  const criteria = getCriteria(selectedKinds)
 
-export const filterCriteria: (selectedKinds: TechnologyTypesEnum[]) => MaturityCategory[] =
-  (selectedKinds: TechnologyTypesEnum[]) => {
-    const criteria = getTechnologies(selectedKinds)
-      .map(technology => technology.checkedCriteria)
-      .reduce((acc, el) => acc.concat(el), [])
+  return maturityCategories.map(category => {
+    const newLevels = Object.entries(category.levels)
+      .reduce<{ [n:string]: MaturityLevel }>((acc, [levelName, level]) => {
+        acc[levelName] = {
+          ...level,
+          criteria: Object.entries(level.criteria)
+            .filter(([name, unused]) => criteria.includes(name))
+            .reduce<{[k: string]: string}>((acc, [name, description]) => { acc[name] = description; return acc; }, {})
+        };
+        return acc;
+      }, {});
 
-    return maturityCategories.map(category => {
-      const newLevels = Object.entries(category.levels)
-        .reduce<{ [n:string]: MaturityLevel }>((acc, [levelName, level]) => {
-          acc[levelName] = {
-            ...level,
-            criteria: Object.entries(level.criteria)
-              .filter(([name, unused]) => criteria.includes(name))
-              .reduce<{[k: string]: string}>((acc, [name, description]) => { acc[name] = description; return acc; }, {})
-          };
-          return acc;
-        }, {});
+    return {
+      ...category,
+      levels: newLevels
+    }
+  })
+}
 
-      return {
-        ...category,
-        levels: newLevels
-      }
-    })
-  }
+export function getCriteria(selectedKinds: string[]): string[] {
+  return getTechnologies(selectedKinds)
+    .map(technology => technology.checkedCriteria)
+    .reduce((acc, el) => acc.concat(el), []) // flatMap
+    .reduce<string[]>((acc, el) => acc.includes(el) ? acc : acc.concat([el]), []) // removeDupplicates
+}
 
 const none: MaturityLevel = { name: 'None', criteria: {}}
 
@@ -73,8 +69,8 @@ const atomicResources: MaturityLevel = {
   }
 }
 
-export const domain: MaturityCategory = {
-  name: 'Domain',
+export const design: MaturityCategory = {
+  name: 'Design',
   levels: {
     [DESIGN.RPC]: rpc,
     [DESIGN.RESOURCES]: resources,
@@ -190,4 +186,10 @@ const others: MaturityCategory = {
   }
 };
 
-export const maturityCategories = [ domain, profile, semantic, others ]
+export const maturityCategories = [ design, profile, semantic, others ]
+
+export const allCriteria: Criteria = maturityCategories
+  .map(category => Object.values(category.levels))
+  .reduce((acc, el) => acc.concat(el), []) // flatten operation
+  .map(level => level.criteria)
+  .reduce((acc, el) => Object.assign(acc, el), {})

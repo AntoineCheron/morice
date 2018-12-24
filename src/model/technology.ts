@@ -4,6 +4,8 @@ export type ComparedTechnology = {
   checkedCriteria: string[]
 }
 
+export type ComparedTechnologyScored = ComparedTechnology & { score: number }
+
 export enum TechnologyTypesEnum {
   INTERFACE_DESCRIPTION_LANGUAGE = 'InterfaceDescriptionLanguages',
   DATA_INTERCHANGE_FORMAT = 'DataInterchangeFormats',
@@ -22,4 +24,4 @@ interface TechnologiesT<A> {
 }
 
 export type Technologies = TechnologiesT<ComparedTechnology>
-export type TechnologiesScored = TechnologiesT<ComparedTechnology & { score: number }>
+export type TechnologiesScored = TechnologiesT<ComparedTechnologyScored>

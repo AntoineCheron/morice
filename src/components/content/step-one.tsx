@@ -3,7 +3,7 @@ import { Row, Col } from 'antd';
 
 import KindOfTechnologiesSelector from '../kind-of-technologies-selector';
 import { TechnologyTypesEnum } from '../../model/technology';
-import { classifiedKindOfTechnologies } from '../../services/technology';
+import { classifiedKindOfTechnologies } from '../../services/technology-data';
 
 type Props = {
   onSave: (selectedKinds: TechnologyTypesEnum[]) => void
