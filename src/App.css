@@ -32,6 +32,10 @@ h3, h4, h5, h6 { margin-bottom: 8px; }
   padding-top: 48px;
 }
 
+.l-spacing-heigh {
+  padding: 48px 0 !important;
+}
+
 .is-centered {
   margin-left: auto;
   margin-right: auto;

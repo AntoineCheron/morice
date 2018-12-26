@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import { Col, Layout, Row, Steps } from 'antd';
+import { Layout, Row, Steps } from 'antd';
 
 import { CriteriaWeights } from '../../model/maturity';
 import { TechnologyTypesEnum } from '../../model/technology';
@@ -34,7 +34,7 @@ class AppContent extends React.Component<Props, State> {
   public render() {
     return (
       <Content className='container'>
-        <Row>
+        <Row className='l-spacing-heigh'>
           <Steps current={this.currentStep() - 1}>
             {steps.map(item => <Step key={item} title={item} />)}
           </Steps>
