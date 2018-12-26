@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 const { Footer } = Layout;
 
 const AppFooter: SFC = () => (
-  <Footer className='center' style={{ marginBottom: 0 }}>
+  <Footer className='center l-padding-top' style={{ marginBottom: 0, marginTop: 24 }}>
     Created to be helpful and shared - <a href="mailto:antoine.cheron@fabernovel.com">feedbacks are welcome</a>
   </Footer>
 )

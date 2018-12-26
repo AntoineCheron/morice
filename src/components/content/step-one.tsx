@@ -6,16 +6,17 @@ import { TechnologyTypesEnum } from '../../model/technology';
 import { classifiedKindOfTechnologies } from '../../services/technology-data';
 
 type Props = {
-  onSave: (selectedKinds: TechnologyTypesEnum[]) => void
+  defaultState?: State,
+  onSave: (state: State) => void
 }
 
-type State = { selectedKinds: TechnologyTypesEnum[] };
+export type State = { selectedKinds: TechnologyTypesEnum[] };
 
-class StepOne extends React.Component<Props, State> {
+export class StepOne extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
-    this.state = { selectedKinds: [] };
+    this.state = props.defaultState || { selectedKinds: [] };
   }
 
   public render() {
@@ -65,9 +66,7 @@ class StepOne extends React.Component<Props, State> {
   }
 
   private onSave(): void {
-    if (this.props.onSave) {
-      this.props.onSave(this.state.selectedKinds)
-    }
+    this.props.onSave(this.state)
   }
   
 }

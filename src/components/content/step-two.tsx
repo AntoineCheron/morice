@@ -8,16 +8,17 @@ import { filterCriteria } from '../../services/maturity';
 import CriteriaForm from '../criteria-form'
 
 type Props = {
+  defaultState?: State,
   selectedKinds: TechnologyTypesEnum[],
-  onSave?: (criteriaWeights: CriteriaWeights, requiredCriteria: string[]) => void
+  onSave: (state: State) => void
 }
-type State = { criteriaWeights: CriteriaWeights, requiredCriteria: string[] }
+export type State = { criteriaWeights: CriteriaWeights, requiredCriteria: string[] }
 
-class StepTwo extends React.Component<Props, State> {
+export class StepTwo extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props);
-    this.state = { criteriaWeights: {}, requiredCriteria: [] };
+    this.state = props.defaultState || { criteriaWeights: {}, requiredCriteria: [] };
   }
 
   public render() {
@@ -53,9 +54,7 @@ class StepTwo extends React.Component<Props, State> {
   }
 
   private onSave(): void {
-    if (this.props.onSave) {
-      this.props.onSave(this.state.criteriaWeights, this.state.requiredCriteria);
-    }
+    this.props.onSave(this.state);
   }
 
   private updateCriteria(criteriaName: string): (value: number) => void {

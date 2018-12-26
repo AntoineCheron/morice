@@ -2,11 +2,10 @@ import React from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
 import { Layout, Row, Steps } from 'antd';
 
-import { CriteriaWeights } from '../../model/maturity';
-import { TechnologyTypesEnum } from '../../model/technology';
+import StatePersistor from '../../services/state-persistor';
 
-import StepOne from'./step-one'
-import StepTwo from'./step-two'
+import { StepOne, State as StepOneState } from'./step-one'
+import { StepTwo, State as StepTwoState } from'./step-two'
 import StepThree from'./step-three'
 
 const { Content } = Layout;
@@ -15,20 +14,18 @@ const steps = ['Kinds of technology', 'Criteria & features', 'Results']
 
 type Props = RouteComponentProps<{step: string}>
 type State = {
-  stepOne?: {
-    selectedKinds: TechnologyTypesEnum[]
-  },
-  stepTwo?: {
-    criteriaWeights: CriteriaWeights,
-    requiredCriteria: string[]
-  }
+  stepOne?: StepOneState,
+  stepTwo?: StepTwoState
 }
 
 class AppContent extends React.Component<Props, State> {
 
+  private statePersistor: StatePersistor<State>
+
   public constructor(props: Props) {
     super(props)
-    this.state = {};
+    this.statePersistor = new StatePersistor<State>('app-content')
+    this.state = this.statePersistor.unpersist({});
   }
 
   public render() {
@@ -53,10 +50,10 @@ class AppContent extends React.Component<Props, State> {
 
     switch (stepNumber) {
       case 1:
-        return <StepOne onSave={this.onSaveStepOne.bind(this)} />
+        return <StepOne onSave={this.onSaveStepOne.bind(this)} defaultState={this.state.stepOne} />
       case 2:
         return this.state.stepOne
-          ? <StepTwo selectedKinds={this.state.stepOne.selectedKinds} onSave={this.onSaveStepTwo.bind(this)} />
+          ? <StepTwo selectedKinds={this.state.stepOne.selectedKinds} onSave={this.onSaveStepTwo.bind(this)} defaultState={this.state.stepTwo} />
           : <Redirect to='/step/1' />
       case 3:
         return this.state.stepTwo && this.state.stepOne
@@ -76,19 +73,25 @@ class AppContent extends React.Component<Props, State> {
       return 1;
   }
 
-  private onSaveStepOne(selectedKinds: TechnologyTypesEnum[]) {
-    this.setState((state) => { return { ...state, stepOne: {selectedKinds} }})
+  private onSaveStepOne(stepOneState: StepOneState) {
+    this.setStateAndThenPersist((state) => { return { ...state, stepOne: stepOneState }})
     this.props.history.push('/step/2')
   }
 
-  private onSaveStepTwo(criteriaWeights: CriteriaWeights, requiredCriteria: string[]) {
-    this.setState((state) => { return {
+  private onSaveStepTwo(stepTwoState: StepTwoState) {
+    this.setStateAndThenPersist((state) => { return {
       ...state,
-      stepTwo: {criteriaWeights, requiredCriteria}
+      stepTwo: stepTwoState
     }})
     this.props.history.push('/step/3')
   }
+
+  private setStateAndThenPersist(updater: StateUpdater<State, Props>) {
+    this.setState(updater, () => this.statePersistor.persist(this.state))
+  }
   
 }
+
+type StateUpdater<S, P> = ((prevState: Readonly<S>, props: Readonly<P>) => (S | null)) | (S | null)
 
 export default AppContent;
