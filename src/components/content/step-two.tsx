@@ -25,7 +25,6 @@ class StepTwo extends React.Component<Props, State> {
       <>
         <Row>
           <Col span={24}>
-            <h1>2. Criteria and features</h1>
             <p>Please select the criteria the technologies you are looking for should meet, and the features they should implement.</p>
           </Col>
         </Row>

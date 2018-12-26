@@ -16,7 +16,6 @@ class StepOne extends React.Component<Props> {
       <>
         <Row>
           <Col span={24}>
-            <h1>1. Kind of technologies</h1>
             <p>Please select the kind of technologies you are looking for.</p>
           </Col>
         </Row>

@@ -40,7 +40,6 @@ class StepThree extends React.Component<Props> {
     return (
       <>
         <Row>
-          <h1>3. Results</h1>
           <p>There are the technologies that match the criteria you selected at the previous step.</p>
           <p>Hover criteria acronyms to get their description.</p>
         </Row>

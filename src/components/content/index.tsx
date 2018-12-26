@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, RouteComponentProps } from 'react-router-dom';
-import { Layout } from 'antd';
+import { Col, Layout, Row, Steps } from 'antd';
 
 import { CriteriaWeights } from '../../model/maturity';
 import { TechnologyTypesEnum } from '../../model/technology';
@@ -10,6 +10,8 @@ import StepTwo from'./step-two'
 import StepThree from'./step-three'
 
 const { Content } = Layout;
+const { Step } = Steps;
+const steps = ['Kinds of technology', 'Criteria & features', 'Results']
 
 type Props = RouteComponentProps<{step: string}>
 type State = {
@@ -32,13 +34,22 @@ class AppContent extends React.Component<Props, State> {
   public render() {
     return (
       <Content className='container'>
+        <Row>
+          <Steps current={this.currentStep() - 1}>
+            {steps.map(item => <Step key={item} title={item} />)}
+          </Steps>
+        </Row>
         { this.renderStep() }
       </Content>
     );
   }
 
+  private currentStep(): number {
+    return Number.parseInt(this.props.match.params.step) || this.tryToGuessStep()
+  }
+
   private renderStep(): JSX.Element {
-    const stepNumber = Number.parseInt(this.props.match.params.step) || this.tryToGuessStep()
+    const stepNumber = this.currentStep()
 
     switch (stepNumber) {
       case 1:
