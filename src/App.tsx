@@ -15,7 +15,7 @@ class App extends Component {
       <Layout style={{minHeight: '100vh'}}>
         <Header />
 
-        <BrowserRouter>
+        <BrowserRouter basename='/morice'>
           <Switch>
             <Route exact path="/" component={() => <Redirect to='/step' />} />
             <Route path="/step/:step" component={Content} />
