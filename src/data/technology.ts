@@ -1,18 +1,22 @@
 import { TechnologyTypesEnum, Technologies, TechnologyType } from '../model/technology'
 
+import idl from './icons/idl.svg'
+import dif from './icons/dif.svg'
+import framework from './icons/framework.svg'
+
 export const classifiedKindOfTechnologies: TechnologyType[] = [
   {
     label: 'Interface Description Languages',
     types: [TechnologyTypesEnum.INTERFACE_DESCRIPTION_LANGUAGE],
-    img: '/technologies-icons/idl.svg'
+    img: idl
   }, {
     label: 'Data Interchange Formats',
     types: [TechnologyTypesEnum.DATA_INTERCHANGE_FORMAT, TechnologyTypesEnum.DATA_INTERCHANGE_FORMAT_WITH_RDF_IDL],
-    img: '/technologies-icons/dif.svg'
+    img: dif
   }, {
     label: 'Frameworks',
     types: [TechnologyTypesEnum.IMPLEMENTATION_FRAMEWORKS],
-    img: '/technologies-icons/framework.svg'
+    img: framework
   }
 ]
 

@@ -1,7 +1,7 @@
 import { CriteriaWeights } from '../model/maturity'
 import { ComparedTechnology, TechnologyTypesEnum, Technologies, TechnologiesScored } from '../model/technology'
 import { getCriteria } from '../services/maturity'
-import { technologies } from './technology-data'
+import { technologies } from '../data/technology'
 
 export function getTechnologies(types: string[]): ComparedTechnology[] {
   return Object.keys(technologies)

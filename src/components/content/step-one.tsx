@@ -3,7 +3,7 @@ import { Button, Icon, Row, Col } from 'antd';
 
 import KindOfTechnologiesSelector from '../kind-of-technologies-selector';
 import { TechnologyTypesEnum } from '../../model/technology';
-import { classifiedKindOfTechnologies } from '../../services/technology-data';
+import { classifiedKindOfTechnologies } from '../../data/technology';
 
 type Props = {
   defaultState?: State,
