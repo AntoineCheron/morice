@@ -29,20 +29,29 @@ class AppContent extends React.Component<Props, State> {
   }
 
   public render() {
-    return (
-      <Content className='container'>
-        <Row className='l-spacing-heigh'>
-          <Steps current={this.currentStep() - 1}>
-            {steps.map(item => <Step key={item} title={item} />)}
-          </Steps>
-        </Row>
-        { this.renderStep() }
-      </Content>
-    );
+    if (!this.stepFromRoute()) {
+      return <Redirect to={`/step/${this.tryToGuessStep()}`} />
+    } else {
+      return (
+        <Content className='container'>
+          <Row className='l-spacing-heigh'>
+            <Steps current={this.currentStep() - 1}>
+              {steps.map(item => <Step key={item} title={item} />)}
+            </Steps>
+          </Row>
+          { this.renderStep() }
+        </Content>
+      );
+    }
   }
 
   private currentStep(): number {
-    return Number.parseInt(this.props.match.params.step) || this.tryToGuessStep()
+    return this.stepFromRoute() || this.tryToGuessStep()
+  }
+
+  private stepFromRoute(): number | undefined {
+    const stepFromRoute = Number.parseInt(this.props.match.params.step, 10)
+    return isNaN(stepFromRoute) ? undefined : stepFromRoute
   }
 
   private renderStep(): JSX.Element {

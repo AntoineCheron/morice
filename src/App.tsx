@@ -13,9 +13,10 @@ class App extends Component {
   render() {
     return (
       <Layout style={{minHeight: '100vh'}}>
+      
         <Header />
 
-        <BrowserRouter basename='/morice'>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Switch>
             <Route exact path="/" component={() => <Redirect to='/step' />} />
             <Route path="/step/:step" component={Content} />
