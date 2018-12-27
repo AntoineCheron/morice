@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table, Col, Button, Icon, Row } from 'antd';
 import { ColumnProps } from 'antd/lib/table' 
 
@@ -9,7 +9,7 @@ import { TechnologyTypesEnum, ComparedTechnologyScored } from '../../model/techn
 import { filterTechnologies } from '../../services/technology';
 import { separateWordsWithSpaces } from '../../utils/string';
 
-type Props = RouteComponentProps<{}> & {
+type Props = {
   selectedKinds: TechnologyTypesEnum[],
   criteriaWeights: CriteriaWeights,
   requiredCriteria: string[]
@@ -54,8 +54,8 @@ class StepThree extends React.Component<Props> {
 
         <Row>
           <Col span={24} className='text-right'>
-            <Button onClick={() => this.props.history.push('/step/2')} >
-              <Icon type="left" /> Previous
+            <Button>
+              <Link to='/step/2'><Icon type="left" /> Previous</Link>
             </Button>
           </Col>
         </Row>
@@ -65,4 +65,4 @@ class StepThree extends React.Component<Props> {
   
 }
 
-export default withRouter(StepThree);
+export default StepThree;

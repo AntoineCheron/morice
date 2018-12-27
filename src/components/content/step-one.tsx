@@ -37,7 +37,10 @@ export class StepOne extends React.Component<Props, State> {
 
         <Row>
           <Col span={24} className='text-right'>
-            <Button type="primary" onClick={this.onSave.bind(this)} >
+            <Button
+              type="primary" onClick={this.onSave.bind(this)}
+              disabled={this.state.selectedKinds.length === 0}
+            >
               Next <Icon type="right" />
             </Button>
           </Col>

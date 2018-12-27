@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Col, Icon, Row } from 'antd';
 
 import { CriteriaWeights } from '../../model/maturity';
@@ -8,7 +8,7 @@ import { filterCriteria } from '../../services/maturity';
 
 import CriteriaForm from '../criteria-form'
 
-type Props = RouteComponentProps<{}> & {
+type Props = {
   defaultState?: State,
   selectedKinds: TechnologyTypesEnum[],
   onSave: (state: State) => void
@@ -47,8 +47,8 @@ class StepTwo extends React.Component<Props, State> {
         <Row>
           <Col span={24} className='text-right'>
             <Button.Group>
-              <Button type="primary" onClick={() => this.props.history.push('/step/1')} >
-                <Icon type="left" /> Previous
+              <Button type="primary">
+                <Link to='/step/1'><Icon type="left" /> Previous</Link>
               </Button>
               <Button type="primary" onClick={this.onSave.bind(this)} >
                 Next <Icon type="right" />
@@ -99,4 +99,4 @@ class StepTwo extends React.Component<Props, State> {
   
 }
 
-export default withRouter(StepTwo);
+export default StepTwo;

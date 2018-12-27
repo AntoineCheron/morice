@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, RouteComponentProps } from 'react-router-dom';
+import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { Layout, Row, Steps } from 'antd';
 
 import StatePersistor from '../../services/state-persistor';
@@ -51,7 +51,7 @@ class AppContent extends React.Component<Props, State> {
 
   private renderStepItem(item: string, index: number): JSX.Element {
     return index < (this.currentStep() - 1)
-      ? <Step key={item} title={<a href={`/step/${index+1}`}>{item}</a>} />
+      ? <Step key={item} title={<Link to={`/step/${index+1}`}>{item}</Link>} />
       : <Step key={item} title={item} />
   }
 
