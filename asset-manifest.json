@@ -1,7 +1,7 @@
 {
   "main.css": "/morice/static/css/main.dd64958e.chunk.css",
-  "main.js": "/morice/static/js/main.275b58b4.chunk.js",
-  "main.js.map": "/morice/static/js/main.275b58b4.chunk.js.map",
+  "main.js": "/morice/static/js/main.78e0f68b.chunk.js",
+  "main.js.map": "/morice/static/js/main.78e0f68b.chunk.js.map",
   "static/css/1.4a497472.chunk.css": "/morice/static/css/1.4a497472.chunk.css",
   "static/js/1.3e6e0fc6.chunk.js": "/morice/static/js/1.3e6e0fc6.chunk.js",
   "static/js/1.3e6e0fc6.chunk.js.map": "/morice/static/js/1.3e6e0fc6.chunk.js.map",
@@ -13,6 +13,6 @@
   "static/media/dif.svg": "/morice/static/media/dif.8957170d.svg",
   "static/css/main.dd64958e.chunk.css.map": "/morice/static/css/main.dd64958e.chunk.css.map",
   "index.html": "/morice/index.html",
-  "precache-manifest.174422385f3742657ae2bc03a626c0d0.js": "/morice/precache-manifest.174422385f3742657ae2bc03a626c0d0.js",
+  "precache-manifest.85722f7545c417c3bde365fce2251705.js": "/morice/precache-manifest.85722f7545c417c3bde365fce2251705.js",
   "service-worker.js": "/morice/service-worker.js"
 }
