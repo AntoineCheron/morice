@@ -16,15 +16,15 @@ self.__precacheManifest = [
     "url": "/morice/static/js/runtime~main.300b0ba8.js"
   },
   {
-    "revision": "d486bd437e27503504ab",
-    "url": "/morice/static/js/main.d486bd43.chunk.js"
+    "revision": "b816610c6ea39d053977",
+    "url": "/morice/static/js/main.b816610c.chunk.js"
   },
   {
     "revision": "57e0ea6081fc8bc8d2fd",
     "url": "/morice/static/js/1.57e0ea60.chunk.js"
   },
   {
-    "revision": "d486bd437e27503504ab",
+    "revision": "b816610c6ea39d053977",
     "url": "/morice/static/css/main.80261215.chunk.css"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/morice/static/css/1.4a497472.chunk.css"
   },
   {
-    "revision": "786e8b8b93a13f9010a895fe963307e7",
+    "revision": "89d33036a9e42f882140aa28a6b94c50",
     "url": "/morice/index.html"
   }
 ];
