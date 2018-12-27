@@ -29,6 +29,10 @@ class StepTwo extends React.Component<Props, State> {
         <Row>
           <Col span={24}>
             <p>Please select the criteria the technologies you are looking for should meet, and the features they should implement.</p>
+            <br/>
+            <Button onClick={() => this.clearEntries()}>
+                <Icon type="undo" /> Clear all
+              </Button>
           </Col>
         </Row>
 
@@ -62,6 +66,10 @@ class StepTwo extends React.Component<Props, State> {
 
   private onSave(): void {
     this.props.onSave(this.state);
+  }
+
+  private clearEntries(): void {
+    this.setState({ criteriaWeights: {}, requiredCriteria: [] })
   }
 
   private updateCriteria(criteriaName: string): (value: number) => void {
