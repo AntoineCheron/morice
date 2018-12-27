@@ -28,6 +28,10 @@ class AppContent extends React.Component<Props, State> {
     this.state = this.statePersistor.unpersist({});
   }
 
+  componentDidUpdate() {
+    window.scrollTo({ top: 0 })
+  }
+
   public render() {
     if (!this.stepFromRoute()) {
       return <Redirect to={`/step/${this.tryToGuessStep()}`} />
