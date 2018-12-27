@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, Tag, Row } from 'antd';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { Table, Col, Button, Icon, Row } from 'antd';
 import { ColumnProps } from 'antd/lib/table' 
 
 import CriteriaTag from '../criteria-tag'
@@ -8,7 +9,7 @@ import { TechnologyTypesEnum, ComparedTechnologyScored } from '../../model/techn
 import { filterTechnologies } from '../../services/technology';
 import { separateWordsWithSpaces } from '../../utils/string';
 
-type Props = {
+type Props = RouteComponentProps<{}> & {
   selectedKinds: TechnologyTypesEnum[],
   criteriaWeights: CriteriaWeights,
   requiredCriteria: string[]
@@ -50,10 +51,18 @@ class StepThree extends React.Component<Props> {
               <Table columns={this.columns} dataSource={results.reverse()} rowKey={result => result.name} />
             </Row>
         )}
+
+        <Row>
+          <Col span={24} className='text-right'>
+            <Button onClick={() => this.props.history.push('/step/2')} >
+              <Icon type="left" /> Previous
+            </Button>
+          </Col>
+        </Row>
       </>
     );
   }
   
 }
 
-export default StepThree;
+export default withRouter(StepThree);

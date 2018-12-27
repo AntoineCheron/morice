@@ -5,7 +5,7 @@ import { Layout, Row, Steps } from 'antd';
 import StatePersistor from '../../services/state-persistor';
 
 import { StepOne, State as StepOneState } from'./step-one'
-import { StepTwo, State as StepTwoState } from'./step-two'
+import StepTwo, { State as StepTwoState } from'./step-two'
 import StepThree from'./step-three'
 
 const { Content } = Layout;
@@ -36,13 +36,19 @@ class AppContent extends React.Component<Props, State> {
         <Content className='container'>
           <Row className='l-spacing-heigh'>
             <Steps current={this.currentStep() - 1}>
-              {steps.map(item => <Step key={item} title={item} />)}
+              { steps.map((item, index) => this.renderStepItem(item, index)) }
             </Steps>
           </Row>
           { this.renderStep() }
         </Content>
       );
     }
+  }
+
+  private renderStepItem(item: string, index: number): JSX.Element {
+    return index < (this.currentStep() - 1)
+      ? <Step key={item} title={<a href={`/step/${index+1}`}>{item}</a>} />
+      : <Step key={item} title={item} />
   }
 
   private currentStep(): number {

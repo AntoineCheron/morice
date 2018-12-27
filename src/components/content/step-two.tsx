@@ -1,4 +1,5 @@
 import React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Button, Col, Icon, Row } from 'antd';
 
 import { CriteriaWeights } from '../../model/maturity';
@@ -7,14 +8,15 @@ import { filterCriteria } from '../../services/maturity';
 
 import CriteriaForm from '../criteria-form'
 
-type Props = {
+type Props = RouteComponentProps<{}> & {
   defaultState?: State,
   selectedKinds: TechnologyTypesEnum[],
   onSave: (state: State) => void
 }
+
 export type State = { criteriaWeights: CriteriaWeights, requiredCriteria: string[] }
 
-export class StepTwo extends React.Component<Props, State> {
+class StepTwo extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props);
@@ -44,9 +46,14 @@ export class StepTwo extends React.Component<Props, State> {
 
         <Row>
           <Col span={24} className='text-right'>
-            <Button type="primary" onClick={this.onSave.bind(this)} >
-              Next <Icon type="right" />
-            </Button>
+            <Button.Group>
+              <Button type="primary" onClick={() => this.props.history.push('/step/1')} >
+                <Icon type="left" /> Previous
+              </Button>
+              <Button type="primary" onClick={this.onSave.bind(this)} >
+                Next <Icon type="right" />
+              </Button>
+            </Button.Group>
           </Col>
         </Row>
       </>
@@ -92,4 +99,4 @@ export class StepTwo extends React.Component<Props, State> {
   
 }
 
-export default StepTwo;
+export default withRouter(StepTwo);
