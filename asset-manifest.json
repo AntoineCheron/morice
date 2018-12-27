@@ -1,18 +1,18 @@
 {
   "main.css": "/morice/static/css/main.80261215.chunk.css",
-  "main.js": "/morice/static/js/main.b816610c.chunk.js",
-  "main.js.map": "/morice/static/js/main.b816610c.chunk.js.map",
+  "main.js": "/morice/static/js/main.59cab1b5.chunk.js",
+  "main.js.map": "/morice/static/js/main.59cab1b5.chunk.js.map",
   "static/css/1.4a497472.chunk.css": "/morice/static/css/1.4a497472.chunk.css",
   "static/js/1.57e0ea60.chunk.js": "/morice/static/js/1.57e0ea60.chunk.js",
   "static/js/1.57e0ea60.chunk.js.map": "/morice/static/js/1.57e0ea60.chunk.js.map",
   "runtime~main.js": "/morice/static/js/runtime~main.300b0ba8.js",
   "runtime~main.js.map": "/morice/static/js/runtime~main.300b0ba8.js.map",
-  "static/css/1.4a497472.chunk.css.map": "/morice/static/css/1.4a497472.chunk.css.map",
+  "static/css/main.80261215.chunk.css.map": "/morice/static/css/main.80261215.chunk.css.map",
   "static/media/idl.svg": "/morice/static/media/idl.88eeb401.svg",
   "static/media/framework.svg": "/morice/static/media/framework.e27383c5.svg",
   "static/media/dif.svg": "/morice/static/media/dif.8957170d.svg",
-  "static/css/main.80261215.chunk.css.map": "/morice/static/css/main.80261215.chunk.css.map",
+  "static/css/1.4a497472.chunk.css.map": "/morice/static/css/1.4a497472.chunk.css.map",
   "index.html": "/morice/index.html",
-  "precache-manifest.e78efbb6df2d6aa364077bf2880e4dcf.js": "/morice/precache-manifest.e78efbb6df2d6aa364077bf2880e4dcf.js",
+  "precache-manifest.1defa84d8109e1545b27e8b1fb4d8012.js": "/morice/precache-manifest.1defa84d8109e1545b27e8b1fb4d8012.js",
   "service-worker.js": "/morice/service-worker.js"
 }
