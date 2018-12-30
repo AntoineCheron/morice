@@ -4,6 +4,7 @@ import { Table, Col, Button, Icon, Row } from 'antd';
 import { ColumnProps } from 'antd/lib/table' 
 
 import CriteriaTag from '../criteria-tag'
+import Scale from '../scale'
 import { CriteriaWeights } from '../../model/maturity';
 import { TechnologyTypesEnum, ComparedTechnologyScored } from '../../model/technology';
 import { filterTechnologies } from '../../services/technology';
@@ -25,6 +26,9 @@ class StepThree extends React.Component<Props> {
     this.columns = [
       { title: 'Name', dataIndex: 'name', key: 'name', width: 300 },
       { title: 'Score', dataIndex: 'score', key: 'score', width: 80 },
+      { title: 'Popularity', dataIndex: 'popularity', key: 'popularity', width: 120,
+        render: (popularity: number) => <Scale value={popularity} />
+      },
       { title: 'Website', dataIndex: 'uri', key: 'uri', width: 100,
         render: (uri: string) => <a href={uri} target='_blank'><Button><Icon type='gift'/>Click</Button></a>
       },

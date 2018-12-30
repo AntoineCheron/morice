@@ -47,6 +47,7 @@ h3, h4, h5, h6 { margin-bottom: 8px; }
 .is-clickable { cursor: pointer; }
 
 .opacity-lighter { opacity: 0.6; }
+.opacity-lighter-2 { opacity: 0.3; }
 
 .is-clickable>.opacity-lighter:hover { opacity: 0.73; }
 

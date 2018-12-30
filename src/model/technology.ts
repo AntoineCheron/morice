@@ -1,6 +1,7 @@
 export type ComparedTechnology = {
   name: string,
-  uri?: string,
+  uri: string,
+  popularity: number,
   checkedCriteria: string[]
 }
 
