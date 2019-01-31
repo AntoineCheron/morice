@@ -41,6 +41,7 @@ h3, h4, h5, h6 { margin-bottom: 8px; }
   margin-right: auto;
 }
 
+.link-no-format { color: rgba(0, 0, 0, 0.65); text-transform: none; }
 .text-bold { font-weight: bold; }
 .text-primary { color: #1890ff; }
 
