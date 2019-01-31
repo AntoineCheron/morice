@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Redirect, RouteComponentProps } from 'react-router-dom';
 import { Layout, Row, Steps } from 'antd';
 
-import StatePersistor from '../../services/state-persistor';
+import { appContentStatePersistor, StatePersistor } from '../../services/state-persistor';
 
 import { StepOne, State as StepOneState } from'./step-one'
 import StepTwo, { State as StepTwoState } from'./step-two'
@@ -13,7 +13,7 @@ const { Step } = Steps;
 const steps = ['Kinds of technology', 'Criteria & features', 'Results']
 
 type Props = RouteComponentProps<{step: string}>
-type State = {
+export type State = {
   stepOne?: StepOneState,
   stepTwo?: StepTwoState
 }
@@ -24,7 +24,7 @@ class AppContent extends React.Component<Props, State> {
 
   public constructor(props: Props) {
     super(props)
-    this.statePersistor = new StatePersistor<State>('app-content')
+    this.statePersistor = appContentStatePersistor
     this.state = this.statePersistor.unpersist({});
   }
 

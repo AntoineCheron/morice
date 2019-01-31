@@ -53,6 +53,7 @@ h3, h4, h5, h6 { margin-bottom: 8px; }
 
 .ant-row { padding-top: 24px; }
 .ant-layout { background-color: white; }
+.ant-row-no-padding { padding-top: 0 !important; }
 
 @media (min-width: 1281px) {
   .container { width: 1080px; }  
