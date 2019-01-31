@@ -7,11 +7,11 @@ const config = {
 }
 
 const Scale: React.SFC<Props> = ({value}) => {
-  const blackDots = value > 5 ? 5 : value < 0 ? 0 : value
-  const lighDots = 5 - blackDots
+  const blackDots = value > 2 ? 2 : value < 0 ? 0 : value
+  const lighDots = 2 - blackDots
 
   return (
-    <div style={{fontSize: 26, color: 'black'}}>
+    <div style={{fontSize: 26, color: 'black', textAlign: 'center'}}>
       { Array(blackDots).fill('•') }
       { Array(lighDots).fill(<span className='opacity-lighter-2'>•</span>) }
     </div>
