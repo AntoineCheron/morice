@@ -20,7 +20,7 @@ const Criteria: React.SFC<CriteriaProps> =
           <Input
             value={getCriteriaValue(shortName)}
             onChange={(e) => updateCriteriaValue(parseInt(e.target.value, 10) || 0)}
-            placeholder='value for classification'
+            placeholder='Score its importance [0;20]'
           />
         </Col>
       </Row>
