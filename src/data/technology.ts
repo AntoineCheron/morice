@@ -24,7 +24,7 @@ export const technologies: Technologies = {
   [TechnologyTypesEnum.INTERFACE_DESCRIPTION_LANGUAGE]: [
     { name: 'RAPIDO - CRUD Option', popularity: 0, uri: 'https://www.rapidodesigner.com', checkedCriteria: [ 'MR', 'MRO', 'EAR', 'LT', 'STA'] },
     { name: 'RAPIDO - Hypermedia option', popularity: 0, uri: 'https://www.rapidodesigner.com', checkedCriteria: [ 'MR', 'MRO', 'EAR', 'LT', 'HL', 'HYP', 'CL', 'FSM', 'STA' ] },
-    { name: 'Modeling RESTful Applications', popularity: 0, uri: 'http://ws-rest.org/2011/proc/a4-schreier.pdf', checkedCriteria: [ 'MT', 'MR', 'OTO', 'MRA', 'MRO', 'DR', 'OSD', 'LT', 'HL', 'HYP', 'COA', 'CL', 'FSM', 'RS', 'STA'] },
+    { name: 'Modeling RESTful Applications', popularity: 0, uri: 'http://ws-rest.org/2011/proc/a4-schreier.pdf', checkedCriteria: [ 'MT', 'MR', 'OTO', 'MRA', 'MRO', 'DR', 'OSD', 'LT', 'HL', 'HYP', 'COA', 'CL', 'FSM', 'STA'] },
     { name: 'Formal modeling of RESTful APIs using finite state machines', popularity: 0, uri: 'https://www.researchgate.net/publication/220940706_Formal_Modeling_of_RESTful_Systems_Using_Finite-State_Machines', checkedCriteria: [ 'MT', 'MR', 'HL', 'HYP', 'FSM', 'STA'] },
     { name: 'A model-driven approach for REST compliant service', popularity: 0, uri: 'http://www.iaas.uni-stuttgart.de/RUS-data/INPROC-2014-23%20-%20A%20model%20driven%20approach%20for%20REST%20compliant%20services.pdf', checkedCriteria: [ 'MT', 'SC', 'MR', 'OTO', 'MRA', 'MRO', 'DR', 'OSD', 'HL', 'HYP', 'CL', 'STA'] },
     { name: 'Hydra', popularity: 1, uri: 'http://www.hydra-cg.com/spec/latest/core/', checkedCriteria: [ 'MR', 'OTO', 'MRA', 'MRO', 'DR', 'OSD', 'LT', 'RUN', 'PS', 'HL', 'HYP', 'TI', 'ERR', 'SD', 'RDF', 'CL', 'SCL', 'STA' ] },

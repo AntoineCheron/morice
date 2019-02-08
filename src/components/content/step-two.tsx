@@ -29,7 +29,7 @@ class StepTwo extends React.Component<Props, State> {
         <Row>
           <Col span={24}>
             <p>Please select the criteria the technologies you are looking for should meet, and the features they should implement.</p>
-            <p>On the right of the grid, you can also score each criteria's importance. We will use these scores to compute a global score for each technology.</p>
+            <p>On the right side of the grid, you can also score each criteria's importance. We will use these scores to compute a global score for each technology.</p>
             <br/>
             <Button onClick={() => this.clearEntries()}>
                 <Icon type="undo" /> Reset
